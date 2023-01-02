@@ -17,8 +17,8 @@ pool.connect(err=>{
     }
 })
 
-app.get('/',(req,res)=>{
-    pool.query('select * from food',(err,result) =>{
+app.get('/books',(req,res)=>{
+    pool.query('select * from catalog',(err,result) =>{
         if(!err){
             res.send(result.rows)
         }
