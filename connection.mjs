@@ -1,8 +1,8 @@
-//import Pool from "pg";
+import Pool from "pg";
 
-const {Pool}=require('pg')
+//const {Pool}=require('pg')
 
-const pool=new Pool({
+export const pool =new Pool({
     host :'containers-us-west-150.railway.app',
     user:'postgres',
     port:'7354',
@@ -10,4 +10,4 @@ const pool=new Pool({
     database:'railway'
 })
 
-module.exports=pool
+//module.exports=pool

@@ -13,13 +13,19 @@
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import pool from './connection.mjs';
+//import {Pool} from 'pg';
+//import {pool} from './connection.mjs';
+//const pool=require('./connection')
 const app=express();
+import pkg from 'pg';
+const {Pool} = pkg;
+//const { Pool, Client } = require('pg')
+const pool = new Pool()
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-const dotenv=require('dotenv')
-dotenv.config()
+// const dotenv=require('dotenv')
+// dotenv.config()
 
 pool.connect(err=>{
     try {

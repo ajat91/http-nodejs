@@ -2,6 +2,7 @@
   "name": "http-nodejs",
   "version": "1.0.0",
   "main": "index.js",
+  "type":"commonjs",
   "author": "Aiden Bai",
   "license": "MIT",
   "scripts": {
