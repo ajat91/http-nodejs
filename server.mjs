@@ -71,7 +71,6 @@ app.delete('/user/:id',(req,res)=>{
   })
 })
 
-
 app.listen(process.env.PORT || 4000, () => {
     console.log(`Server started on port`)
 });
