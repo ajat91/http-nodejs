@@ -52,7 +52,7 @@ app.put('/user/:id',(req,res)=>{
   pool.query((`update users set name = '${name}',email = '${email}',gender='${gender}' where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send({
-            data :result,
+            data :req.body,
             message: 'Update Success'
           })
       }else{
