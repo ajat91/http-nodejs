@@ -38,7 +38,7 @@ app.post('/user',(req,res)=>{
     
     if(!err){
       res.send({
-        data :result,
+        data :req.body,
         message: 'Insert Success'
       })
     }else{
