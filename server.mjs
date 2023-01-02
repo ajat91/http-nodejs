@@ -1,12 +1,14 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import pkg from 'pg';
+import cors from "cors";
 const {Pool} = pkg;
 const pool = new Pool()
 const app=express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 
 pool.connect(err=>{
     try {
