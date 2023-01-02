@@ -6,9 +6,14 @@
 // }).listen(process.env.PORT);
 
 
-const bodyParser = require('body-parser');
-const express = require('express');
-const pool=require('./connection')
+// const bodyParser = require('body-parser');
+// const express = require('express');
+// const pool=require('./connection')
+// const app=express();
+
+import bodyParser from 'body-parser';
+import express from 'express';
+import pool from './connection.mjs';
 const app=express();
 
 app.use(bodyParser.urlencoded({extended: true}));
