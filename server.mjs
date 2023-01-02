@@ -38,7 +38,7 @@ app.post('/user',(req,res)=>{
     
     if(!err){
       res.send({
-        data :result.rows,
+        data :result,
         message: 'Insert Success'
       })
     }else{
@@ -52,7 +52,7 @@ app.put('/user/:id',(req,res)=>{
   pool.query((`update users set name = '${name}',email = '${email}',gender='${gender}' where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send({
-            data :result.rows,
+            data :result,
             message: 'Update Success'
           })
       }else{
