@@ -16,25 +16,25 @@ pool.connect(err=>{
     }
 })
 
-app.get('/books',(req,res)=>{
-    pool.query('select * from catalog',(err,result) =>{
+app.get('/users',(req,res)=>{
+    pool.query('select * from users',(err,result) =>{
         if(!err){
             res.send(result.rows)
         }
     })
 })
 
-app.get('/books/:id',(req,res)=>{
-  pool.query(`select * from catalog where id = '${req.params.id}'`,(err,result) =>{
+app.get('/user/:id',(req,res)=>{
+  pool.query(`select * from users where id = '${req.params.id}'`,(err,result) =>{
       if(!err){
           res.send(result.rows)
       }
   })
 })
 
-app.post('/books',(req,res)=>{
-  const {name,description,authors}=req.body
-  pool.query((`insert into catalog (name,description,authors) values('${name}','${description}','${authors}')`),(err,result)=>{
+app.post('/user',(req,res)=>{
+  const {name,email,gender}=req.body
+  pool.query((`insert into users (name,email,gender) values('${name}','${email}','${gender}')`),(err,result)=>{
     
     if(!err){
       res.send({
@@ -47,9 +47,9 @@ app.post('/books',(req,res)=>{
   })
 })
 
-app.put('/books/:id',(req,res)=>{
-  const {name,description,authors}=req.body
-  pool.query((`update catalog set name = '${name}',description = '${description}',authors='${authors}' where id = '${req.params.id}'`),(err,result)=>{
+app.put('/user/:id',(req,res)=>{
+  const {name,email,gender}=req.body
+  pool.query((`update users set name = '${name}',email = '${email}',gender='${gender}' where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send({
             data :result.rows,
@@ -61,8 +61,8 @@ app.put('/books/:id',(req,res)=>{
   })
 })
 
-app.delete('/books/:id',(req,res)=>{
-  pool.query((`delete from catalog where id = '${req.params.id}'`),(err,result)=>{
+app.delete('/user/:id',(req,res)=>{
+  pool.query((`delete from users where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send("Delete Success")
       }else{
