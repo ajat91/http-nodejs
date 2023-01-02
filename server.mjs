@@ -26,7 +26,7 @@ app.get('/books',(req,res)=>{
 
 app.post('/books',(req,res)=>{
   const {name,description,authors}=req.body
-  pool.query((`insert into catalog (name,description,authors) values(${name},${description},${authors})`),(err,result)=>{
+  pool.query((`insert into catalog (name,description,authors) values('${name}','${description}','${authors}')`),(err,result)=>{
     
     if(!err){
       res.send('Insert Success')
