@@ -1,31 +1,13 @@
-// import { createServer } from 'http';
-
-// createServer((req, res) => {
-//   res.write('Hello World!');
-//   res.end();
-// }).listen(process.env.PORT);
-
-
-// const bodyParser = require('body-parser');
-// const express = require('express');
-// const pool=require('./connection')
-// const app=express();
-
 import bodyParser from 'body-parser';
 import express from 'express';
-//import {Pool} from 'pg';
-//import {pool} from './connection.mjs';
-//const pool=require('./connection')
-const app=express();
 import pkg from 'pg';
 const {Pool} = pkg;
-//const { Pool, Client } = require('pg')
 const pool = new Pool()
+const app=express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// const dotenv=require('dotenv')
-// dotenv.config()
+
 
 pool.connect(err=>{
     try {
@@ -44,7 +26,6 @@ app.get('/',(req,res)=>{
 })
 
 
-//const PORT=process.env.PORT || 4000;
 app.listen(process.env.PORT || 4000, () => {
     console.log(`Server started on port`)
 });
