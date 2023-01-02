@@ -36,6 +36,27 @@ app.post('/books',(req,res)=>{
   })
 })
 
+app.put('/books/:id',(req,res)=>{
+  const {name,description,authors}=req.body
+  pool.query((`update catalog set name = '${name}',description = '${description}',authors='${authors}' where id = '${req.params.id}'`),(err,result)=>{
+      if(!err){
+          res.send("Update Success")
+      }else{
+        res.send(err.message)
+      }
+  })
+})
+
+app.delete('/books/:id',(req,res)=>{
+  pool.query((`delete from catalog where id = '${req.params.id}'`),(err,result)=>{
+      if(!err){
+          res.send("Delete Success")
+      }else{
+        res.send(err.message)
+      }
+  })
+})
+
 
 app.listen(process.env.PORT || 4000, () => {
     console.log(`Server started on port`)
