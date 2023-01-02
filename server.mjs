@@ -37,7 +37,6 @@ app.get('/user/:id',(req,res)=>{
 app.post('/user',(req,res)=>{
   const {name,email,gender}=req.body
   pool.query((`insert into users (name,email,gender) values('${name}','${email}','${gender}')`),(err,result)=>{
-    
     if(!err){
       res.send({
         data :req.body,
