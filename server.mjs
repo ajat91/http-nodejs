@@ -8,7 +8,6 @@ const app=express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
 pool.connect(err=>{
     try {
         console.log("Database Berhasil Terhubung")
@@ -23,6 +22,18 @@ app.get('/books',(req,res)=>{
             res.send(result.rows)
         }
     })
+})
+
+app.post('/books',(req,res)=>{
+  const {name,description,authors}=req.body
+  pool.query((`insert into catalog (name,description,authors) values(${name},${description},${authors})`),(err,result)=>{
+    
+    if(!err){
+      res.send('Insert Success')
+    }else{
+      res.send(err.message)
+    }
+  })
 })
 
 
