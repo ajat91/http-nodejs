@@ -64,7 +64,9 @@ app.put('/user/:id',(req,res)=>{
 app.delete('/user/:id',(req,res)=>{
   pool.query((`delete from users where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
-          res.send("Delete Success")
+          res.send({
+            message:"Delete Success"
+          })
       }else{
         res.send(err.message)
       }
