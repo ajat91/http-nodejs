@@ -29,7 +29,7 @@ app.get('/users',(req,res)=>{
 app.get('/user/:id',(req,res)=>{
   pool.query(`select * from users where id = '${req.params.id}'`,(err,result) =>{
       if(!err){
-          res.send(result.rows)
+          res.send(result.rows[0])
       }
   })
 })
