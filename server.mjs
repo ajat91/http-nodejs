@@ -2,7 +2,6 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import pkg from 'pg';
 import cors from "cors";
-import uuid from 'uuid/v4'
 const {Pool} = pkg;
 const pool = new Pool()
 const app=express();
@@ -20,7 +19,7 @@ pool.connect(err=>{
 })
 
 app.get('/users',(req,res)=>{
-    pool.query('select * from table_users',(err,result) =>{
+    pool.query('select * from users',(err,result) =>{
         if(!err){
             res.send(result.rows)
         }
@@ -28,7 +27,7 @@ app.get('/users',(req,res)=>{
 })
 
 app.get('/user/:id',(req,res)=>{
-  pool.query(`select * from table_users where id = '${req.params.id}'`,(err,result) =>{
+  pool.query(`select * from users where id = '${req.params.id}'`,(err,result) =>{
       if(!err){
           res.send(result.rows[0]);
       }
@@ -37,7 +36,7 @@ app.get('/user/:id',(req,res)=>{
 
 app.post('/user',(req,res)=>{
   const {name,email,gender}=req.body
-  pool.query((`insert into table_users (id,name,email,gender) values('${uuid()},'${name}','${email}','${gender}')`),(err,result)=>{
+  pool.query((`insert into users (name,email,gender) values('${name}','${email}','${gender}')`),(err,result)=>{
     if(!err){
       res.send({
         data :req.body,
@@ -51,7 +50,7 @@ app.post('/user',(req,res)=>{
 
 app.put('/user/:id',(req,res)=>{
   const {name,email,gender}=req.body
-  pool.query((`update table_users set name = '${name}',email = '${email}',gender='${gender}' where id = '${req.params.id}'`),(err,result)=>{
+  pool.query((`update users set name = '${name}',email = '${email}',gender='${gender}' where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send({
             data :req.body,
@@ -64,7 +63,7 @@ app.put('/user/:id',(req,res)=>{
 })
 
 app.delete('/user/:id',(req,res)=>{
-  pool.query((`delete from table_users where id = '${req.params.id}'`),(err,result)=>{
+  pool.query((`delete from users where id = '${req.params.id}'`),(err,result)=>{
       if(!err){
           res.send({
             message:"Delete Success"
