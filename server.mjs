@@ -37,7 +37,7 @@ app.get('/user/:id',(req,res)=>{
 
 app.post('/user',(req,res)=>{
   const {name,email,gender}=req.body
-  pool.query((`insert into table_users (id,name,email,gender) values('${uuid()}'${name}','${email}','${gender}')`),(err,result)=>{
+  pool.query((`insert into table_users (id,name,email,gender) values('${uuid()},'${name}','${email}','${gender}')`),(err,result)=>{
     if(!err){
       res.send({
         data :req.body,
